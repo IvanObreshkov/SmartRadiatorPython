@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np  
 import matplotlib.pyplot as plt  
 import seaborn as seabornInstance 
+import pickle
 from sklearn.model_selection import train_test_split 
 from sklearn.linear_model import LinearRegression
 from sklearn import metrics
@@ -24,15 +25,10 @@ X_train, X_test , y_train , y_test = train_test_split(X,y,test_size=0.25,random_
 
 model = LinearRegression()
 model.fit(X_train, y_train)
-X_new = [[-10, 23]]
-predictions=model.predict(X_new)
+#X_new = [[-10, 23]]
+predictions=model.predict([[-10, 23]])
+pickle.dump(model, open('model.pkl', 'wb'))
 
 
-
-
-#df = pd.DataFrame({'Actual': y_test, 'Predicted': predictions})
-
-
-#df1 = df.head(25)
-#print(df1)
-print("Input=%s, Predicted=%s" % (X_new[0], predictions))
+#print("Input=%s, Predicted=%s" % (X_new[0], predictions))
+print(predictions)
